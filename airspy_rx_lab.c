@@ -83,10 +83,6 @@ int gettimeofday(struct timeval *tv, void* ignored)
 
 #include <signal.h>
 
-#if defined _WIN32
-	#define sleep(a) Sleep( (a*1000) )
-#endif
-
 #define SAMPLE_SCALE_FLOAT_TO_INT ( (8192.0f) )
 
 #define FLOAT32_EL_SIZE_BYTE (4)	/* 4bytes = 32bit float */

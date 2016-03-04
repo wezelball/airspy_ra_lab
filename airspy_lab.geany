@@ -20,12 +20,15 @@ indent_mode=2
 [project]
 name=airspy_lab
 base_path=/usr/local/src/airspy_ra_lab
+description=
 
 [long line marker]
 long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
-FILE_NAME_0=0;C;0;EUTF-8;1;1;0;%2Fusr%2Flocal%2Fsrc%2Fairspy_ra_lab%2Fairspy_rx_lab.c;0;4
-FILE_NAME_1=23;Make;0;EUTF-8;1;1;0;%2Fusr%2Flocal%2Fsrc%2Fairspy_ra_lab%2FMakefile;0;4
+current_page=2
+FILE_NAME_0=3026;C;0;EUTF-8;1;1;0;%2Fusr%2Flocal%2Fsrc%2Fairspy_ra_lab%2Fairspy_rx_lab.c;0;3
+FILE_NAME_1=0;C;0;EUTF-8;1;1;0;%2Fusr%2Flocal%2Fsrc%2Fairspy_ra_lab%2Fairspy_gpio_lab.c;0;4
+FILE_NAME_2=326;Make;0;EUTF-8;1;1;0;%2Fusr%2Flocal%2Fsrc%2Fairspy_ra_lab%2FMakefile;0;4
+FILE_NAME_3=1203;None;0;EUTF-8;1;1;0;%2Fusr%2Flocal%2Fsrc%2Fairspy_ra_lab%2Fnotes.txt;0;4
