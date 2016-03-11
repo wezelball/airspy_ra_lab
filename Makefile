@@ -9,24 +9,12 @@ LIBS = -lairspy
 
 all: rx_lab gpio_lab
 
-rx_lab: $(OBJECTS)
-	$(CC) -o airspy_rx_lab airspy_rx_lab.o $(LDFLAGS) $(LIBS) $(INCFLAGS)
+rx_lab:	airspy_rx_lab.c
+	$(CC) -o airspy_rx_lab airspy_rx_lab.c $(LDFLAGS) $(INCFLAGS) $(LIBS)
 
-gpio_lab: $(OBJECTS)
-	$(CC) -o airspy_gpio_lab airspy_gpio_lab.o $(LDFLAGS) $(LIBS) $(INCFLAGS)
+gpio_lab: airspy_gpio_lab.c
+	$(CC) -o airspy_gpio_lab airspy_gpio_lab.c $(LDFLAGS) $(INCFLAGS) $(LIBS)
 
-.SUFFIXES:
-.SUFFIXES:	.c .cc .C .cpp .o
-
-.c.o :
-	$(CC) -o $@ -c $(CFLAGS) $< $(INCFLAGS)
-
-count:
-	wc *.c *.cc *.C *.cpp *.h *.hpp
 
 clean:
 	rm -f *.o *~ airspy_rx_lab airspy_gpio_lab testairspy
-
-.PHONY: all
-.PHONY: count
-.PHONY: clean
