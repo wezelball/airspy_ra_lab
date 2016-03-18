@@ -26,12 +26,56 @@ Usage:
 
 TYPICAL COMMAND LINE
 
-./airspy_rx_lab -r testairspy -f 99 -t 3 -n 5000000 -d
+./airspy_rx_lab -r testairspy -f 100.0 -t 1 -n 10000000  -d
+./airspy_rx_lab -r testairspy -f 100.0 -t 1 -n 10000000  -a 1 -d
 
-Currently plotting crashes if number of samples set to 10e6, which should
-be 1 second of data.
-
+-a 0 is 20 million samples per second (real) 
+-a 1 is 5 million samples per second (real)
 
 PLOTTING FROM GNUPLOT (current data format and endianness not verified)
 
-plot 'testairspy' binary format='%int16' endian=little using 1 with lines
+plot 'testairspy' binary format='%float32' endian=little using 1 with lines
+
+I'm not sure of the results I am getting with gnuplot, but grc seems
+to understand the output
+
+
+3/6/16
+
+I need to know exactly what one windows worth of data is, and is there
+a data structure in the program that holds that information?
+
+3/11/16
+Installed Baudline and did a cool experiment with streaming from airspy,
+using following commands:
+
+$ mkfifo /tmp/sdrfifo
+$ cat /tmp/sdrfifo | ./baudline -reset -samplerate 2500000 -channel 2 -format le16 -quadrature -stdin &
+$ airspy_rx -a 1 -f 100.0 -t 2 -r /tmp/sdrfifo
+
+I was also able to open the testairspy file using the following parameters:
+
+File format: raw
+Decompression: auto magic
+Initial byte offset: 0
+Sample rate: custom 20000000
+Channels: 1
+Decode format: 32 bit float
+Endian: little
+Normalization: auto measure
+
+3/17/16
+
+Start working with IO data
+airspy_rx -f 100.0 -a 0 -t 2 -n 10000000 -d -r testairspy
+
+THIS WORKED!
+
+GnuRadio properly read file with correct frequency information when 
+the INT16_IQ (IShort in gnuradio) was used.  I got a 100.5 MHz 
+FFT peak for the evil radio station - first time for that!
+
+Using IQ data is the proper way to go - now I need to get python and 
+matplotlib to read it.
+
+Rational resampler also works properly.
